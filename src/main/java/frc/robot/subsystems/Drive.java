@@ -28,6 +28,7 @@ public class Drive extends SubsystemBase {
   /**
    * Creates a new Drive.
    */
+  //What up losers
   public Drive() {
     TalonFX front_right = new TalonFX(1);
     TalonFX front_left = new TalonFX(2);
