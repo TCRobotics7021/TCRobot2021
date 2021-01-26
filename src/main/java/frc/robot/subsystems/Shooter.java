@@ -95,6 +95,21 @@ public class Shooter extends SubsystemBase {
     
   }
 
+  public void setRpms(double top_setpoint, double bot_setpoint){
+    
+    
+    //bot_top_ratio = SmartDashboard.getNumber("Ratio",1);
+    this.bot_setpoint = bot_setpoint;
+    this.top_setpoint = top_setpoint;
+
+    updatePIDvariables();
+    UpdateRPMs();
+    bot_shooter_PID.setReference(this.bot_setpoint, ControlType.kVelocity);
+    top_shooter_PID.setReference(this.top_setpoint, ControlType.kVelocity);
+    
+    
+  }
+
   public void freeWheel() {
     bot_shooter_PID.setReference(0, ControlType.kVoltage);
     top_shooter_PID.setReference(0, ControlType.kVoltage);

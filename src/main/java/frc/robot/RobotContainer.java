@@ -25,6 +25,7 @@ import frc.robot.commands.Aim_At_Target;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.BallTracking;
 import frc.robot.commands.CancelCommand;
+import frc.robot.commands.ChallengeFourShooting;
 import frc.robot.commands.ColorWheel_Drive;
 import frc.robot.commands.Default_Intake;
 import frc.robot.commands.DriveInvertedToggle;
@@ -35,6 +36,7 @@ import frc.robot.commands.Manual_Turret;
 import frc.robot.commands.Percent_Lift;
 import frc.robot.commands.Percent_Shoot;
 import frc.robot.commands.Ratio_Adjust;
+import frc.robot.commands.ResetSmartDashboard;
 import frc.robot.commands.Shoot_Energy;
 import frc.robot.commands.Shoot_Energy_At_Target;
 import frc.robot.commands.SpinningWheel;
@@ -82,9 +84,9 @@ public class RobotContainer {
   public static DigitalInput outfeedsensor = new DigitalInput(3); 
   public static DigitalInput infeedsensor = new DigitalInput(1); 
   //Constants
-  public final static double ACC_SPEED = .5;
-  public final static double ACC_EMPTY_SPEED = .7;
-  public final static double ACC_DELAY = .0; //In Seconds
+  public final static double ACC_SPEED = .4;
+  public final static double ACC_EMPTY_SPEED = .4;
+  public final static double ACC_DELAY = .1; //In Seconds
   
   public final static double LR_AIM_TOL = 2;
    
@@ -180,7 +182,14 @@ public class RobotContainer {
 
     new JoystickButton(OPpanel, 2).whenPressed(new AutoSpinWheel());
     new JoystickButton(OPpanel, 1).whenPressed(new TrenchBallShoot());
-    
+
+    new JoystickButton(JoyR, 11).whileHeld(new ChallengeFourShooting(1));
+    new JoystickButton(JoyR, 12).whileHeld(new ChallengeFourShooting(2));
+    new JoystickButton(JoyR, 13).whileHeld(new ChallengeFourShooting(3));
+    new JoystickButton(JoyR, 14).whileHeld(new ChallengeFourShooting(4));
+    new JoystickButton(JoyR, 15).whileHeld(new ChallengeFourShooting(5));
+    new JoystickButton(JoyR, 16).whileHeld(new ResetSmartDashboard());
+
   }
 
   
