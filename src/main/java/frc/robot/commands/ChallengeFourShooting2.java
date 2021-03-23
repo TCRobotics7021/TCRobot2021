@@ -27,6 +27,8 @@ public class ChallengeFourShooting2 extends CommandBase {
 
   boolean shootingStarted;
 
+  boolean atRPMS;
+
 
 
   public ChallengeFourShooting2(int Button_One) {
@@ -68,6 +70,7 @@ public class ChallengeFourShooting2 extends CommandBase {
 
       Bot_Percent = SmartDashboard.getNumber("Set Bot Rpms 5", 0);
     }
+    TDelay.reset();
 
   }
 
@@ -95,8 +98,19 @@ public class ChallengeFourShooting2 extends CommandBase {
         RobotContainer.Turret_subsystem.setSpeed(turretSpeed);
 
       RobotContainer.shooter_subsystem.setRpms(Top_Percent, Bot_Percent);
+      
+      if(!RobotContainer.shooter_subsystem.atRPMs()){
+        TDelay.reset();
+        TDelay.start();
+      }
+      if(TDelay.get()>2000){
+        atRPMS = true;
+      }
+      else{
+        atRPMS = false;
+      }
 
-      if(RobotContainer.shooter_subsystem.atRPMs()&& Top_Percent > 0 && Bot_Percent > 0 && ( Math.abs(TX) < 2 || RobotContainer.OPpanel.getRawButton(4)) ) {
+      if(atRPMS && Top_Percent > 0 && Bot_Percent > 0 && ( Math.abs(TX) < 2 || RobotContainer.OPpanel.getRawButton(4)) ) {
         RobotContainer.Accumulator_subsystem.setSpeed(RobotContainer.ACC_EMPTY_SPEED);
         RobotContainer.Intake_subsystem.set_Intake_Speed(0, .6);
         shootingStarted = true;
