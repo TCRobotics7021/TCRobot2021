@@ -93,6 +93,8 @@ public class RobotContainer {
    
   public final static double DRIVE_SCALING = .5;
   public final static double DRIVE_TURN_SCALING = .4;
+  public final static double DRIVE_SCALING_TURBO = 1;
+  public final static double DRIVE_TURN_SCALING_TURBO = 1;
 
   public final static double RATIO_CALC_A = -0.00000006;
   public final static double RATIO_CALC_B = .0006;
