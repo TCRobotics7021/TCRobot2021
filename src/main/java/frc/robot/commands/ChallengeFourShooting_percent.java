@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class ChallengeFourShooting extends CommandBase {
+public class ChallengeFourShooting_percent extends CommandBase {
   /** Creates a new ChallengeFourShooting. */
   double TX;
 
@@ -29,7 +29,7 @@ public class ChallengeFourShooting extends CommandBase {
 
 
 
-  public ChallengeFourShooting(int Button_One) {
+  public ChallengeFourShooting_percent(int Button_One) {
     this.Button_One = Button_One;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.Accumulator_subsystem);
@@ -41,6 +41,8 @@ public class ChallengeFourShooting extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    TDelay.reset();
+    TDelay.start();
     shootingStarted = false;
     RobotContainer.Limelight_subsystem.setPipeline(1);
     if(Button_One == 1){
@@ -94,9 +96,9 @@ public class ChallengeFourShooting extends CommandBase {
       }
         RobotContainer.Turret_subsystem.setSpeed(turretSpeed);
 
-      RobotContainer.shooter_subsystem.setRpms(Top_Percent, Bot_Percent);
+      RobotContainer.shooter_subsystem.percentshoot(Top_Percent, Bot_Percent);
 
-      if(RobotContainer.shooter_subsystem.atRPMs()&& Top_Percent > 0 && Bot_Percent > 0 && ( Math.abs(TX) < 2 || RobotContainer.OPpanel.getRawButton(4)) ) {
+      if(TDelay.hasElapsed(3)) {
         RobotContainer.Accumulator_subsystem.setSpeed(RobotContainer.ACC_EMPTY_SPEED);
         RobotContainer.Intake_subsystem.set_Intake_Speed(0, .6);
         shootingStarted = true;

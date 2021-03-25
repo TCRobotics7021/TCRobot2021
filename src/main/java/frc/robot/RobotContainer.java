@@ -25,8 +25,9 @@ import frc.robot.commands.Aim_At_Target;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.BallTracking;
 import frc.robot.commands.CancelCommand;
-import frc.robot.commands.ChallengeFourShooting;
+
 import frc.robot.commands.ChallengeFourShooting2;
+import frc.robot.commands.ChallengeFourShooting_percent;
 import frc.robot.commands.ColorWheel_Drive;
 import frc.robot.commands.Default_Intake;
 import frc.robot.commands.DriveInvertedToggle;
@@ -191,6 +192,11 @@ public class RobotContainer {
     new JoystickButton(JoyR, 13).whileHeld(new ChallengeFourShooting2(3));
     new JoystickButton(JoyR, 14).whileHeld(new ChallengeFourShooting2(4));
     new JoystickButton(JoyR, 15).whileHeld(new ChallengeFourShooting2(5));
+    new JoystickButton(JoyL, 11).whileHeld(new ChallengeFourShooting_percent(1));
+    new JoystickButton(JoyL, 12).whileHeld(new ChallengeFourShooting_percent(2));
+    new JoystickButton(JoyL, 13).whileHeld(new ChallengeFourShooting_percent(3));
+    new JoystickButton(JoyL, 14).whileHeld(new ChallengeFourShooting_percent(4));
+    new JoystickButton(JoyL, 15).whileHeld(new ChallengeFourShooting_percent(5));
     new JoystickButton(JoyR, 16).whileHeld(new ResetSmartDashboard());
 
   }
