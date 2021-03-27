@@ -87,7 +87,7 @@ public class RobotContainer {
   public static DigitalInput infeedsensor = new DigitalInput(1); 
   //Constants
   public final static double ACC_SPEED = .4;
-  public final static double ACC_EMPTY_SPEED = .2;
+  public final static double ACC_EMPTY_SPEED = .4;
   public final static double ACC_DELAY = .1; //In Seconds
   
   public final static double LR_AIM_TOL = 2;
@@ -109,7 +109,7 @@ public class RobotContainer {
   public final static double INNER_INTAKE_SPEED = .6;
 
   public final static double PRESET_SHOOTING_DIST = 3000; //In mm 
-  public final static double SHOOTER_START_RANGE = 150;
+  public final static double SHOOTER_START_RANGE = 250;
 
   public final static double LIFT_POS_CONV_FACTOR = 2.9723191748; 
   public final static double RESET_ENC_POS = 1084;
@@ -187,17 +187,17 @@ public class RobotContainer {
     new JoystickButton(OPpanel, 2).whenPressed(new AutoSpinWheel());
     new JoystickButton(OPpanel, 1).whenPressed(new TrenchBallShoot());
 
-    new JoystickButton(JoyR, 11).whileHeld(new ChallengeFourShooting2(1));
-    new JoystickButton(JoyR, 12).whileHeld(new ChallengeFourShooting2(2));
-    new JoystickButton(JoyR, 13).whileHeld(new ChallengeFourShooting2(3));
-    new JoystickButton(JoyR, 14).whileHeld(new ChallengeFourShooting2(4));
-    new JoystickButton(JoyR, 15).whileHeld(new ChallengeFourShooting2(5));
-    new JoystickButton(JoyL, 11).whileHeld(new ChallengeFourShooting_percent(1));
-    new JoystickButton(JoyL, 12).whileHeld(new ChallengeFourShooting_percent(2));
-    new JoystickButton(JoyL, 13).whileHeld(new ChallengeFourShooting_percent(3));
-    new JoystickButton(JoyL, 14).whileHeld(new ChallengeFourShooting_percent(4));
-    new JoystickButton(JoyL, 15).whileHeld(new ChallengeFourShooting_percent(5));
-    new JoystickButton(JoyR, 16).whileHeld(new ResetSmartDashboard());
+    new JoystickButton(JoyL, 11).whileHeld(new ChallengeFourShooting2(1));
+    new JoystickButton(JoyL, 12).whileHeld(new ChallengeFourShooting2(2));
+    new JoystickButton(JoyL, 13).whileHeld(new ChallengeFourShooting2(3));
+    new JoystickButton(JoyL, 14).whileHeld(new ChallengeFourShooting2(4));
+    new JoystickButton(JoyL, 15).whileHeld(new ChallengeFourShooting2(5));
+    // new JoystickButton(JoyL, 11).whileHeld(new ChallengeFourShooting_percent(1));
+    // new JoystickButton(JoyL, 12).whileHeld(new ChallengeFourShooting_percent(2));
+    // new JoystickButton(JoyL, 13).whileHeld(new ChallengeFourShooting_percent(3));
+    // new JoystickButton(JoyL, 14).whileHeld(new ChallengeFourShooting_percent(4));
+    // new JoystickButton(JoyL, 15).whileHeld(new ChallengeFourShooting_percent(5));
+    new JoystickButton(JoyL, 16).whileHeld(new ResetSmartDashboard());
 
   }
 

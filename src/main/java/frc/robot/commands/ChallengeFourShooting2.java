@@ -37,7 +37,9 @@ public class ChallengeFourShooting2 extends CommandBase {
     addRequirements(RobotContainer.Accumulator_subsystem);
     addRequirements(RobotContainer.Limelight_subsystem);
     addRequirements(RobotContainer.shooter_subsystem);
-    addRequirements(RobotContainer.Turret_subsystem);    
+    addRequirements(RobotContainer.Turret_subsystem);   
+    addRequirements(RobotContainer.Intake_subsystem); 
+    addRequirements(RobotContainer.Drive_subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -71,7 +73,7 @@ public class ChallengeFourShooting2 extends CommandBase {
       Bot_Percent = SmartDashboard.getNumber("Set Bot Rpms 5", 0);
     }
     TDelay.reset();
-
+    RobotContainer.shooter_subsystem.setRpms(Top_Percent, Bot_Percent);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -80,7 +82,7 @@ public class ChallengeFourShooting2 extends CommandBase {
     
       if(RobotContainer.OPpanel.getRawButton(4)== false){
         if(shootingStarted == false){
-        TX = RobotContainer.Limelight_subsystem.getTx();
+        TX = RobotContainer.Limelight_subsystem.getTx()-.5;
         turretSpeed = TX * 1/10;
         if(turretSpeed < 0){
           turretSpeed -= 0;
@@ -97,13 +99,13 @@ public class ChallengeFourShooting2 extends CommandBase {
       }
         RobotContainer.Turret_subsystem.setSpeed(turretSpeed);
 
-      RobotContainer.shooter_subsystem.setRpms(Top_Percent, Bot_Percent);
+      
       
       if(!RobotContainer.shooter_subsystem.atRPMs()){
         TDelay.reset();
         TDelay.start();
       }
-      if(TDelay.get()>2000){
+      if(TDelay.hasElapsed(3)){
         atRPMS = true;
       }
       else{
@@ -112,14 +114,12 @@ public class ChallengeFourShooting2 extends CommandBase {
 
       if(atRPMS && Top_Percent > 0 && Bot_Percent > 0 && ( Math.abs(TX) < 2 || RobotContainer.OPpanel.getRawButton(4)) ) {
         RobotContainer.Accumulator_subsystem.setSpeed(RobotContainer.ACC_EMPTY_SPEED);
-        RobotContainer.Intake_subsystem.set_Intake_Speed(0, .6);
+       // RobotContainer.Intake_subsystem.set_Intake_Speed(0, .6);
         shootingStarted = true;
       }
 
-      if(RobotContainer.Accumulator_subsystem.outfeedblocked() && !RobotContainer.shooter_subsystem.atRPMs()){
+      if(RobotContainer.Accumulator_subsystem.outfeedblocked() && !atRPMS){
         RobotContainer.Accumulator_subsystem.setSpeed(0);
-        
-
       }
     }
 
