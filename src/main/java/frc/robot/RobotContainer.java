@@ -22,6 +22,7 @@ import frc.robot.CommandGroups.TrenchBallShoot;
 import frc.robot.commands.AcardeDrive;
 import frc.robot.commands.Accumulator_Index;
 import frc.robot.commands.Aim_At_Target;
+import frc.robot.commands.AshleyArts1;
 import frc.robot.commands.AutoStaticShoot;
 import frc.robot.commands.BallTracking;
 import frc.robot.commands.CancelCommand;
@@ -141,6 +142,9 @@ public class RobotContainer {
     AutonomousChooser.addOption("Shoot Balls", new AutoStaticShoot(5));
     AutonomousChooser.addOption("Auto Shoot and Move", new AutoShootandMove());
     AutonomousChooser.addOption("Shoot Trench Balls", new TrenchBallShoot());
+    AutonomousChooser.addOption("AshleyArts1", new AshleyArts1(Drive_subsystem));
+    AutonomousChooser.addOption("AshleyArts2", new AshleyArts1(Drive_subsystem));
+    AutonomousChooser.addOption("AshleyArts3", new AshleyArts1(Drive_subsystem));
 
     SmartDashboard.putData("Auto Commands", AutonomousChooser);
 
