@@ -22,7 +22,7 @@ import frc.robot.CommandGroups.TrenchBallShoot;
 import frc.robot.commands.AcardeDrive;
 import frc.robot.commands.Accumulator_Index;
 import frc.robot.commands.Aim_At_Target;
-import frc.robot.commands.AutoShoot;
+import frc.robot.commands.AutoStaticShoot;
 import frc.robot.commands.BallTracking;
 import frc.robot.commands.CancelCommand;
 
@@ -42,6 +42,7 @@ import frc.robot.commands.ResetSmartDashboard;
 import frc.robot.commands.Shoot_Energy;
 import frc.robot.commands.Shoot_Energy_At_Target;
 import frc.robot.commands.SpinningWheel;
+import frc.robot.commands.StaticShoot;
 import frc.robot.commands.Timed_Drive;
 import frc.robot.commands.Toggle_Auto_Aim;
 import frc.robot.subsystems.Accumulator;
@@ -86,9 +87,9 @@ public class RobotContainer {
   public static DigitalInput outfeedsensor = new DigitalInput(3); 
   public static DigitalInput infeedsensor = new DigitalInput(1); 
   //Constants
-  public final static double ACC_SPEED = .4;
-  public final static double ACC_EMPTY_SPEED = .4;
-  public final static double ACC_DELAY = .1; //In Seconds
+  public final static double ACC_SPEED = .5;
+  public final static double ACC_EMPTY_SPEED = .6;
+  public final static double ACC_DELAY = 0; //In Seconds
   
   public final static double LR_AIM_TOL = 2;
    
@@ -105,8 +106,8 @@ public class RobotContainer {
   public final static double DIST_CALC_B = -98.772;
   public final static double DIST_CALC_C = 2725.8;
 
-  public final static double INTAKE_SPEED = .7; //The intake's speed 
-  public final static double INNER_INTAKE_SPEED = .6;
+  public final static double INTAKE_SPEED = .6; //The intake's speed 
+  public final static double INNER_INTAKE_SPEED = .5;
 
   public final static double PRESET_SHOOTING_DIST = 3000; //In mm 
   public final static double SHOOTER_START_RANGE = 250;
@@ -122,8 +123,8 @@ public class RobotContainer {
 
   public final static double MANUAL_TURRET_SPEED = .5;
 
-  public final static double LONG_SHOT_VELOCITY = 4800;
-  public final static double LONG_SHOT_RATIO = .65;
+  public final static double LONG_SHOT_VELOCITY = 5000;
+  public final static double LONG_SHOT_RATIO = .45;
 
   public final static double BALL_TRACKING_PVALUE = .0185 * .8;
   public final static double BALL_TRACKING_DRIVESPEED = .2;
@@ -137,7 +138,7 @@ public class RobotContainer {
    */
   public RobotContainer() { 
     AutonomousChooser.setDefaultOption("Move Off Line", new Timed_Drive(1, .2));
-    AutonomousChooser.addOption("Shoot Balls", new AutoShoot(5));
+    AutonomousChooser.addOption("Shoot Balls", new AutoStaticShoot(5));
     AutonomousChooser.addOption("Auto Shoot and Move", new AutoShootandMove());
     AutonomousChooser.addOption("Shoot Trench Balls", new TrenchBallShoot());
 
@@ -198,6 +199,8 @@ public class RobotContainer {
     // new JoystickButton(JoyL, 14).whileHeld(new ChallengeFourShooting_percent(4));
     // new JoystickButton(JoyL, 15).whileHeld(new ChallengeFourShooting_percent(5));
     new JoystickButton(JoyL, 16).whileHeld(new ResetSmartDashboard());
+    new JoystickButton(JoyR, 3).whileHeld(new StaticShoot(1));
+    new JoystickButton(JoyR, 4).whileHeld(new StaticShoot(2));
 
   }
 
