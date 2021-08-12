@@ -8,9 +8,12 @@
 package frc.robot.CommandGroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.AutoShoot;
+import frc.robot.commands.AutoStaticShoot;
+import frc.robot.commands.AutoStaticShoot2;
 import frc.robot.commands.BallTracking;
 import frc.robot.commands.Timed_Drive;
+import frc.robot.commands.Timed_Turret;
+import frc.robot.subsystems.Turret;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -23,11 +26,13 @@ public class TrenchBallShoot extends SequentialCommandGroup {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     addCommands(
-      new AutoShoot(2.5),
+      new Timed_Turret(.5,-1),
+      new AutoStaticShoot(2.5),
+      new Timed_Drive(.5, .3),
       new IntakeTrenchBalls(),
       new Timed_Drive(2.5, -.2),
       new Timed_Drive(.25, .1),
-      new AutoShoot(3)
+      new AutoStaticShoot2(3)
     );
   }
 }
