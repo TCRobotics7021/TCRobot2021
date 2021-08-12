@@ -11,15 +11,15 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drive;
 
 
-public class AshleyArts1 extends SequentialCommandGroup {
-  public AshleyArts1(Drive m_robotDrive) {        
-    Trajectory trajectory1 = m_robotDrive.loadTrajectoryFromFile("AshleyArts1");
+public class AshleyArts2 extends SequentialCommandGroup {
+  public AshleyArts2(Drive m_robotDrive) {        
+    Trajectory trajectory1 = m_robotDrive.loadTrajectoryFromFile("AshleyArts2");
 
     
     addCommands(
         new InstantCommand(() -> {
             m_robotDrive.resetOdometry(trajectory1.getInitialPose());
         }),
-        m_robotDrive.createCommandForTrajectory(trajectory1, false).withTimeout(50).withName("AshleyArts1"));
+        m_robotDrive.createCommandForTrajectory(trajectory1, false).withTimeout(50).withName("AshleyArts2"));
 }
 }
